@@ -11,7 +11,7 @@ public class LikesDao
 {
 	private static LikesDao instance = new LikesDao();
 	
-	private LikesDao() { }
+	private LikesDao() { } 
 	
 	public static LikesDao getInstance()
 	{
