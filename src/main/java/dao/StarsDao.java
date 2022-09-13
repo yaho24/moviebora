@@ -1,11 +1,14 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import model.Stars;
 
 public class StarsDao 
 {
@@ -34,5 +37,15 @@ public class StarsDao
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public int getTotal(String id) // 별점 먹인 수 
+	{
+		return (int)session.selectOne("starsns.getTotal", id);
+	}
+
+	public List<Stars> StarsList(String id) // 별점 먹인 영화 리스트
+	{
+		return session.selectList("starsns.starsList", id);
 	}
 }

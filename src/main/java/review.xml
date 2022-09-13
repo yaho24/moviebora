@@ -2,5 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewns">
-	<!-- resultType은 조회할 때만 사용 -->
+	<select id="getTotal" parameterType="string" resultType="integer">
+		select count(*) from review where id = #{id}
+	</select>
+	<select id="reviewList" parameterType="string" resultType="stars">
+		select * from 
+		(select rowNum rn, e.* from 
+		(select r.*, movieName from review r, movie m 
+		where r.movieNo = m.movieNo and r.id = #{id} and m.del='n' order by movieNo desc) e)
+		where rn between 1 and 4
+	</select>
 </mapper>
