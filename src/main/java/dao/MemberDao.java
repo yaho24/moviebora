@@ -1,38 +1,42 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class MemberDao 
-{
+import model.Member;
+
+public class MemberDao {
 	private static MemberDao instance = new MemberDao();
-	
-	private MemberDao() { }
-	
-	public static MemberDao getInstance()
-	{
+	private MemberDao() {
+	}
+	 
+	public static MemberDao getInstance() {
 		return instance;
 	}
-	
+
 	private static SqlSession session;
-	
-	static
-	{
-		try
-		{
-			Reader reader = Resources.getResourceAsReader("configuration.xml");
-			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
-			//	openSession(true) : 입력/삭제/수정 후에 commit : 뭔지모름 ㅋㅋ
-			session = ssf.openSession(true);
-			// reader.close(); : 얘도 왜들어가있는지 모름
-		} 
-		catch (Exception e) 
-		{
-			System.out.println(e.getMessage());
+		static {
+			try {
+				Reader reader = Resources.getResourceAsReader("configuration.xml");
+				SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
+				session = ssf.openSession(true);
+				reader.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}		
+			public Member select(String id) {		
+				return (Member) session.selectOne("memberns.select", id);			
 		}
-	}
+
+			public int insert(Member member) {		
+				return session.insert("memberns.insert", member);
+			}
+		
 }
