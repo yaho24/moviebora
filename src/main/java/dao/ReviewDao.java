@@ -1,11 +1,14 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import model.Review;
 
 public class ReviewDao 
 {
@@ -34,5 +37,15 @@ public class ReviewDao
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public int getTotal(String id) 
+	{
+		return (int)session.selectOne("reviewns.getTotal", id);
+	}
+
+	public List<Review> ReviewList(String id) 
+	{
+		return session.selectList("reviewns.reviewList", id);
 	}
 }

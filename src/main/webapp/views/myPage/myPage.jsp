@@ -17,13 +17,35 @@
 		<div class="content">
 			<ul class="content_main">
 				<li>
-					<h3> 평가 리스트 </h3>
+					<h3> 별점 리스트 </h3>
+					<c:if test="${starsList.size() == 0}">
+						<p> 별점 기록이 없습니다 </p>
+					</c:if>
+					<c:if test="${starsList.size() != 0}">
+						<a href="myStars.do">+ 자세히</a>
+						<!-- myPage에 영화평점매긴 리스트 -->
+						<table>
+							<tr>
+								<th>영화이름</th>
+								<th>별점</th>
+							</tr>
+							<c:forEach items="${starsList}" var="stars">
+								<tr>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${stars.movieName}">${stars.movieName}</a></td>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${bookmark.dno}">${bookmark.spot}</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
+				</li>
+				<li>
+					<h3> 리뷰 목록 </h3>
 					<c:if test="${bmList.size() == 0}">
 					<!-- bmList.size에 해당하는 list 생성 -->
 						<p>북마크한 전시가 없습니다.</p>
 					</c:if>
 					<c:if test="${bmList.size() != 0}">
-						<a href="myScore.do">+ 자세히</a>
+						<a href="myReview.do">+ 자세히</a>
 						<!-- myPage에 영화평점매긴 리스트 -->
 						<table>
 							<tr>
@@ -40,9 +62,9 @@
 					</c:if>
 				</li>
 				<li>
-					<h3>등록한 전시</h3>
+					<h3> 추천 영화 </h3>
 					<c:if test="${dpList.size() == 0}">
-						<p>등록한 전시가 없습니다.</p>
+						<p> 추천 할 영화가 없습니다 </p>
 					</c:if>
 					<c:if test="${dpList.size() != 0}">
 						<a href="myRecommend.do">+ 자세히</a>
