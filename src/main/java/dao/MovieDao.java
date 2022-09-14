@@ -1,11 +1,15 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import model.Movie;
+import model.Stars;
 
 public class MovieDao 
 {
@@ -34,5 +38,15 @@ public class MovieDao
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public String genre(Stars stars)
+	{
+		return (String)session.selectOne("moviens.genre", stars);
+	}
+
+	public List<Movie> RecommendList(String recommendGenre) 
+	{
+		return session.selectList("starsns.recommendList", recommendGenre);
 	}
 }
