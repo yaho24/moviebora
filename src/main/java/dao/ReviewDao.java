@@ -1,7 +1,9 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.Review;
+import model.Stars;
 
 public class ReviewDao 
 {
@@ -39,13 +42,23 @@ public class ReviewDao
 		}
 	}
 
-	public int getTotal(String id) 
+	public int getTotal(int memberNo) 
 	{
-		return (int)session.selectOne("reviewns.getTotal", id);
+		return (int)session.selectOne("reviewns.getTotal", memberNo);
 	}
 
-	public List<Review> ReviewList(String id) 
+	public List<Review> ReviewList(int memberNo) 
 	{
-		return session.selectList("reviewns.reviewList", id);
+		return session.selectList("reviewns.reviewList", memberNo);
+	}
+
+	public List<Review> reviewPageList(int memberNo, int startRow, int endRow) 
+	{
+		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+			
+		return session.selectList("reviewns.reviewPageList", map);
 	}
 }

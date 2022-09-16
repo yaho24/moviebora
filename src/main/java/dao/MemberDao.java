@@ -21,22 +21,29 @@ public class MemberDao {
 	}
 
 	private static SqlSession session;
-		static {
-			try {
-				Reader reader = Resources.getResourceAsReader("configuration.xml");
-				SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
-				session = ssf.openSession(true);
-				reader.close();
-			} catch (Exception e) {
+	
+	static 
+	{
+		try 
+		{
+			Reader reader = Resources.getResourceAsReader("configuration.xml");
+			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
+			session = ssf.openSession(true);
+			reader.close();
+			} 
+			catch (Exception e) 
+			{
 				System.out.println(e.getMessage());
-			}
-		}		
-			public Member select(String id) {		
-				return (Member) session.selectOne("memberns.select", id);			
 		}
+	}		
+			
+	public Member select(int memberNo) 
+	{		
+		return (Member) session.selectOne("memberns.select", memberNo);			
+	}
 
-			public int insert(Member member) {		
-				return session.insert("memberns.insert", member);
-			}
-		
+	public int insert(Member member) 
+	{		
+		return session.insert("memberns.insert", member);
+	}
 }

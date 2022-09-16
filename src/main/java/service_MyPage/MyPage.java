@@ -1,4 +1,4 @@
-package service.MyPage;
+package service_MyPage;
 
 import java.util.List;
 
@@ -23,30 +23,31 @@ public class MyPage implements CommandProcess
 	{
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");
-
-		if (id != null)
+		if (session.getAttribute("memberNo") != null) 
 		{
+			int memberNo = (int) session.getAttribute("memberNo");
+			
 			MemberDao md = MemberDao.getInstance();
-			Member member = md.select(id);
+			Member member = md.select(memberNo);
 			// 로그인한 애 정보
+			
 			StarsDao sd = StarsDao.getInstance();
-			int starsTotal = sd.getTotal(id);
+			int starsTotal = sd.getTotal(memberNo);
 			// 로그인한 애 별점먹인 수
-			List<Stars> StarsList = sd.StarsList(id);
+			List<Stars> StarsList = sd.StarsList(memberNo);
 			// 로그인한 애 별점 리스트 
 			
 			ReviewDao rd = ReviewDao.getInstance();
-			int reviewTotal = rd.getTotal(id);
+			int reviewTotal = rd.getTotal(memberNo);
 			// 로그인한 애 리뷰 수
-			List<Review> ReviewList = rd.ReviewList(id);
+			List<Review> ReviewList = rd.ReviewList(memberNo);
 			// 로그인한 애 리뷰 리스트
 			
 			MovieDao md2 = MovieDao.getInstance();
 			int max = 0;
-			String[] genre = new String[4];
-			String recommendGenre = null;
-			int[] genreList = new int[4]; 
+			String[] genre = new String[4]; // 장르 종류
+			String recommendGenre = null; // 추천 장르 저장할 변수
+			int[] genreList = new int[4]; // 장르 당 별점먹인 개수
 			
 			for(int i=0 ; i<StarsList.size() ; i++)
 			{
@@ -92,7 +93,7 @@ public class MyPage implements CommandProcess
 			request.setAttribute("recommendList", RecommendList);
 			// 추천목록 객체 하나 더만들지, 아니면 어디서 불러와서 영화쪽으로 넘길지 대충 생각해보기
 		}
-		
-		return "myPage";
+	
+	return "myPage";
 	}
 }

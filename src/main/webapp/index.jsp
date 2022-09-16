@@ -10,11 +10,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href = "joinForm.do";
-	//	location.href = "loginForm.do";
-	//	location.href = "movieSearchForm.do";
-	//	location.href = "myPage.do";
+		location.href = "myPage.yo";
 	</script>
-	
 </body>
 </html>

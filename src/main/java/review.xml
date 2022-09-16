@@ -5,11 +5,18 @@
 	<select id="getTotal" parameterType="string" resultType="integer">
 		select count(*) from review where id = #{id}
 	</select>
-	<select id="reviewList" parameterType="string" resultType="stars">
+	<select id="reviewList" parameterType="string" resultType="review">
 		select * from 
 		(select rowNum rn, e.* from 
 		(select r.*, movieName from review r, movie m 
 		where r.movieNo = m.movieNo and r.id = #{id} and m.del='n' order by movieNo desc) e)
 		where rn between 1 and 4
+	</select>
+	<select id="reviewPageList" parameterType="hashmap" resultType="review">
+		select * from (select rowNum rn, e.* from 
+		(select r.*, movieName, movieDirector, movieActor1, movieActor2, movieScore, movieGenre, movieStory
+		from review r, movie m where r.movieNo = m.movieNo and r.memberNo = #{memberNo}
+		and m.del='n' order by m.movieNo desc) e)
+		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

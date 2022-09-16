@@ -22,7 +22,7 @@
 						<p> 별점 기록이 없습니다 </p>
 					</c:if>
 					<c:if test="${starsList.size() != 0}">
-						<a href="myStars.do">+ 자세히</a>
+						<a href="myStars.yo">+ 자세히</a>
 						<!-- myPage에 영화평점매긴 리스트 목록 링크 -->
 						<table>
 							<tr>
@@ -45,7 +45,7 @@
 						<p> 리뷰 기록이 없습니다 </p>
 					</c:if>
 					<c:if test="${reviewList.size() != 0}">
-						<a href="myReview.do">+ 내 리뷰 목록</a>
+						<a href="myReview.yo">+ 내 리뷰 목록</a>
 						<!-- myPage에 리뷰 전체 목록 링크(여기는 얘가 메인) -->
 						<table>
 							<tr>
@@ -69,7 +69,7 @@
 						<p> 추천 할 영화가 없습니다 </p>
 					</c:if>
 					<c:if test="${recommnedList.size() != 0}">
-						<a href="myRecommend.do">+ 자세히</a>
+						<a href="myRecommend.yo">+ 자세히</a>
 						<!-- 얘를 타고 넘어가면 장르별로 추천? 아니면 그냥 그대로 장르 하나만 선정해서 추천? -->
 						<table>
 							<tr>

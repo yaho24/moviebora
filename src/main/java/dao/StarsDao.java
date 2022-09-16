@@ -1,7 +1,9 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -39,13 +41,23 @@ public class StarsDao
 		}
 	}
 
-	public int getTotal(String id) // 별점 먹인 수 
+	public int getTotal(int memberNo) // 별점 먹인 수 
 	{
-		return (int)session.selectOne("starsns.getTotal", id);
+		return (int)session.selectOne("starsns.getTotal", memberNo);
 	}
 
-	public List<Stars> StarsList(String id) // 별점 먹인 영화 리스트
+	public List<Stars> StarsList(int memberNo) // 별점 먹인 영화 리스트
 	{
-		return session.selectList("starsns.starsList", id);
+		return session.selectList("starsns.starsList", memberNo);
+	}
+
+	public List<Stars> starsPageList(int memberNo, int startRow, int endRow) 
+	{
+		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+			
+		return session.selectList("starsns.starsPageList", map);
 	}
 }

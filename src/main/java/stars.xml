@@ -12,4 +12,11 @@
 		where s.movieNo = m.movieNo and s.id = #{id} and m.del='n' order by movieNo desc) e)
 		where rn between 1 and 4
 	</select>
+	<select id="starsPageList" parameterType="hashmap" resultType="stars">
+		select * from (select rowNum rn, e.* from 
+		(select s.*, movieName, movieDirector, movieActor1, movieActor2, movieScore, movieGenre, movieStory
+		from stars s, movie m where s.movieNo = m.movieNo and s.memberNo = #{memberNo}
+		and m.del='n' order by m.movieNo desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>
