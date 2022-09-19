@@ -42,12 +42,12 @@ public class MovieDao
 		}
 	}
 	
-	public String genre(Stars stars)
+	public int genre(Stars stars)
 	{
-		return (String)session.selectOne("moviens.genre", stars);
+		return (int) session.selectOne("moviens.genre", stars);
 	}
 
-	public List<Movie> RecommendList(String recommendGenre) 
+	public List<Movie> RecommendList(int recommendGenre) 
 	{
 		return session.selectList("moviens.recommendList", recommendGenre);
 	}

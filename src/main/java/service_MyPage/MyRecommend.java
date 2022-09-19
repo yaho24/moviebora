@@ -35,24 +35,24 @@ public class MyRecommend implements CommandProcess
 			MovieDao md2 = MovieDao.getInstance();
 			
 			int max = 0;
-			String[] genre = new String[4]; // 장르 종류
-			String recommendGenre = null; // 추천 장르 저장할 변수
+			int[] genre = new int[4]; // 장르 종류
 			int[] genreList = new int[4]; // 장르 당 별점먹인 개수
 			int genreNo = 0; // 장르 번호로 표현했을 때 쓰는 변수
+			int recommendGenre = 0; // 추천 장르 저장할 변수
 			
 			for(int i=0 ; i<StarsList.size() ; i++) // 장르명 넣어서 수정해줘야함
 			{
 				genre[i] = md2.genre(StarsList.get(i));
 				
-				if(genre.equals("genre1"))
+				if(genre[i] == 0)
 				{
 					genreList[0]++;
 				}
-				else if(genre.equals("genre2"))
+				else if(genre[i] == 1)
 				{
 					genreList[1]++;
 				}
-				else if(genre.equals("genre3"))
+				else if(genre[i] == 2)
 				{
 					genreList[2]++;
 				}
@@ -66,12 +66,12 @@ public class MyRecommend implements CommandProcess
 			{
 				if(genreList[j] > max)
 				{
-					max = genreList[j];
+					max = genre[j];
+					genreNo = j;
 				}
 			}
 			
-			recommendGenre = genre[max];
-			genreNo = max;
+			recommendGenre = genreNo;
 			
 			List<Movie> RecommendList = md2.RecommendList(recommendGenre);
 			// 추천 장르의 영화 리스트
@@ -113,8 +113,9 @@ public class MyRecommend implements CommandProcess
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+			request.setAttribute("recommendList", RecommendList);
 		}
 		
-		return "myRecommend";
+		return "/views/myPage/myRecommend";
 	}
 }

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- css 지워둠, 적용시켜야함 -->
+	<link rel="stylesheet" type="text/css" href="../../myPageCSS.css">
 </head>
 <body>
 	<div class="container_middle">
@@ -22,7 +22,7 @@
 						<p> 별점 기록이 없습니다 </p>
 					</c:if>
 					<c:if test="${starsList.size() != 0}">
-						<a href="myStars.yo">+ 자세히</a>
+						<a href="myStars.do">+ 자세히</a>
 						<!-- myPage에 영화평점매긴 리스트 목록 링크 -->
 						<table>
 							<tr>
@@ -31,8 +31,8 @@
 							</tr>
 							<c:forEach items="${starsList}" var="stars">
 								<tr>
-									<td><a href="/semojeon/views/display/dpView.do?dno=${stars.movieNo}">${stars.movieNo}</a></td>
-									<td><a href="/semojeon/views/display/dpView.do?dno=${stars.movieNo}">${stars.score}</a></td>
+									<td><!-- a태그로 영화상세페이지로 링크걸기 -->${stars.movieNo}</td>
+									<td><!-- href="/semojeon/views/display/dpView.do?dno=${stars.movieNo} -->${stars.score}</td>
 								</tr>
 								<!-- 4개만 영화 및 별점 출력, 앞부분 링크는 눌렀을때 영화 상세페이지, 내용은 movieNo에 대한 이미지로 구성?, 밑은 점수 -->
 							</c:forEach>
@@ -45,7 +45,7 @@
 						<p> 리뷰 기록이 없습니다 </p>
 					</c:if>
 					<c:if test="${reviewList.size() != 0}">
-						<a href="myReview.yo">+ 내 리뷰 목록</a>
+						<a href="myReview.do">+ 내 리뷰 목록</a>
 						<!-- myPage에 리뷰 전체 목록 링크(여기는 얘가 메인) -->
 						<table>
 							<tr>
@@ -54,8 +54,8 @@
 							</tr>
 							<c:forEach items="${reviewList}" var="review">
 								<tr>
-									<td><a href="/semojeon/views/display/dpView.do?dno=${review.movieNo}">${review.subject}</a></td>
-									<td><a href="/semojeon/views/display/dpView.do?dno=${review.movieNo}">${review.subject}</a></td>
+									<td>${review.subject}</td>
+									<td>${review.content}</td>
 									<!-- 리뷰한 영화 목록 4개만 출력, 앞부분 링크는 눌렀을때 영화 상세페이지로 이동 아래줄은 리뷰상세페이지로 이동, 내용은 영화 이미지 + 리뷰제목 -->
 								</tr>
 							</c:forEach>
@@ -69,7 +69,7 @@
 						<p> 추천 할 영화가 없습니다 </p>
 					</c:if>
 					<c:if test="${recommnedList.size() != 0}">
-						<a href="myRecommend.yo">+ 자세히</a>
+						<a href="myRecommend.do">+ 자세히</a>
 						<!-- 얘를 타고 넘어가면 장르별로 추천? 아니면 그냥 그대로 장르 하나만 선정해서 추천? -->
 						<table>
 							<tr>
@@ -79,7 +79,7 @@
 							<c:forEach items="${recommendList}" var="recommend">
 								<tr>
 									<td>${recommend.genre}</td>
-									<td><a href="/semojeon/views/display/dpView.do?dno=${recommend.movieNo}">${recommend.movieNo}</a></td>
+									<td><!-- 위는말고 아래만 링크걸기 -->${recommend.movieNo}</td>
 									<!-- 얘도 앞에는 영화 상세페이지로 이동, 내용은 장르 + 영화이미지 -->
 								</tr>
 							</c:forEach>

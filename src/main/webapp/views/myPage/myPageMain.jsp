@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 세션체크 필요 -->
-<!-- Css 필요 -->
+	<link rel="stylesheet" type="text/css" href="../../myPageMainCSS.css">
 	<script type="text/javascript">
 		function showCon(id) 
 		{
-			location.href = id + ".yo";
+			location.href = id + ".do";
 		}
 	</script>
 <!-- 프로필, 메뉴 -->
@@ -14,7 +14,7 @@
 	<ul>
 		<!-- 프로필 영역 -->
 		<li>
-			<img alt="프로필사진" src="/semojeon/upload/${member.memberProfile}">
+			<img alt="프로필사진" src="0.png"> <!-- ${member.memberNo} -->
 			<!-- 프로필 사진 -->
 		</li>
 		<li class="profile_txt">

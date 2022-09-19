@@ -1,3 +1,9 @@
+drop table stars;
+drop table likes;
+drop table review CASCADE CONSTRAINTS;
+drop table movie;
+drop table member;
+
 create table member
 (
 	memberNo NUMBER PRIMARY KEY NOT NULL,
@@ -9,7 +15,7 @@ create table member
 	memberProfile VARCHAR2(100) NOT NULL,
 	memberGender CHAR(2) default 'm' NOT NULL,
 	memberDel CHAR(1) default 'n' NOT NULL,
-	reg_date DATE NOT NULL,
+	reg_date DATE NOT NULL
 );
 
 create table movie
@@ -52,10 +58,16 @@ create table stars
 );
 -- 별점 및 별점에 대한 기록 테이블
 
-create table mark
-(
-	markNo NUMBER PRIMARY KEY NOT NULL,
-	memberNo NUMBER references member(memberNo) NOT NULL,
-	movieNo NUMBER references movie(movieNo) NOT NULL
-);
--- 혹시몰라서 구상만 해둠(관심영화 -> 취향분석)
+insert into member values (1, '11', '1', '일번', '일번닉', 'k1@naver.com', '반갑', 'm', 'n', sysdate);
+insert into member values (2, '22', '2', '이번', '이번닉', 'k2@naver.com', '하이', 'w', 'n', sysdate);
+
+insert into movie values (1, '영화1', '감독1', '배우1', '배우2', '2022-01-01', '1', '대충 재밌음', 'n');
+insert into movie values (2, '영화2', '감독2', '배우3', '배우4', '2022-01-02', '2', '대충 재밌음2', 'n');
+
+insert into review values (1, '제목1', '내용1', '2022-01-01', 'n', 1, 1);
+insert into review values (2, '제목2', '내용2', '2022-01-02', 'n', 2, 2);
+
+insert into stars values (10, 1, 1);
+insert into stars values (5, 2, 2);
+
+select * from member;

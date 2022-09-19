@@ -73,6 +73,6 @@ public class MyReview implements CommandProcess
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		}
-		return "myReview";
+		return "views/myPage/myReview";
 	}
 }

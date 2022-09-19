@@ -13,10 +13,10 @@ import model.Member;
 
 public class MemberDao {
 	private static MemberDao instance = new MemberDao();
-	private MemberDao() {
-	}
+	private MemberDao() { }
 	 
-	public static MemberDao getInstance() {
+	public static MemberDao getInstance() 
+	{
 		return instance;
 	}
 
@@ -30,16 +30,16 @@ public class MemberDao {
 			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
 			session = ssf.openSession(true);
 			reader.close();
-			} 
-			catch (Exception e) 
-			{
-				System.out.println(e.getMessage());
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
 		}
 	}		
 			
 	public Member select(int memberNo) 
 	{		
-		return (Member) session.selectOne("memberns.select", memberNo);			
+		return (Member) session.selectOne("memberns.select", memberNo);
 	}
 
 	public int insert(Member member) 

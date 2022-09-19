@@ -3,11 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="moviens">
 	<!-- resultType은 조회할 때만 사용 -->
-	<select id="genre" parameterType="stars" resultType="string">
-		select genre from movie m, stars s where m.movieNo = s.movieNo
+	<select id="genre" parameterType="stars" resultType="integer">
+		select moiveGenre from movie m, stars s where m.movieNo = s.movieNo
 	</select>
-	<select id="recommendList" parameterType="string" resultType="movie">
-		select * from movie where movie.genre = #{recommendGenre}
+	<select id="recommendList" parameterType="int" resultType="movie">
+		select * from movie where movie.movieGenre = #{recommendGenre}
 	</select>
 	<select id="moviePageList" parameterType="hashmap" resultType="movie">
 		select * from (select rowNum rn, e.* from 

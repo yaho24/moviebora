@@ -10,7 +10,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href = "myPage.yo";
+		location.href="/moviebora/views/myPage/myPage.do";
 	</script>
 </body>
 </html>
