@@ -48,6 +48,7 @@ public class MyPage implements CommandProcess
 			String[] genre = new String[4]; // 장르 종류
 			String recommendGenre = null; // 추천 장르 저장할 변수
 			int[] genreList = new int[4]; // 장르 당 별점먹인 개수
+			int genreNo = 0; // 장르 int 값으로 적용할때
 			
 			for(int i=0 ; i<StarsList.size() ; i++)
 			{

@@ -1,7 +1,9 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -47,6 +49,16 @@ public class MovieDao
 
 	public List<Movie> RecommendList(String recommendGenre) 
 	{
-		return session.selectList("starsns.recommendList", recommendGenre);
+		return session.selectList("moviens.recommendList", recommendGenre);
+	}
+
+	public List<Movie> moviePageList(int genreNo, int startRow, int endRow) 
+	{
+		Map<String, Integer> map = new HashMap<>();
+		map.put("genreNo", genreNo);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+			
+		return session.selectList("moviens.moviePageList", map);
 	}
 }

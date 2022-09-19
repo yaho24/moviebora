@@ -9,4 +9,10 @@
 	<select id="recommendList" parameterType="string" resultType="movie">
 		select * from movie where movie.genre = #{recommendGenre}
 	</select>
+	<select id="moviePageList" parameterType="hashmap" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select * from stars s, movie m where s.movieNo = m.movieNo and m.movieGenre = #{genreNo}
+		and m.del='n' and s.Score = 0 order by m.movieNo desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

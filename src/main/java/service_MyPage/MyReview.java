@@ -29,7 +29,7 @@ public class MyReview implements CommandProcess
 			
 			ReviewDao rd = ReviewDao.getInstance();
 
-			final int ROW_PER_PAGE = 5; 
+			final int ROW_PER_PAGE = 4; 
 			// 한 페이지에 별점영화 5개 씩
 			final int PAGE_PER_BLOCK = 4; 
 			// 한 블럭에 4페이지 씩
@@ -42,7 +42,7 @@ public class MyReview implements CommandProcess
 				pageNum = "1";
 			}
 			
-			int currentPage = Integer.parseInt(pageNum); 
+			int currentPage = Integer.parseInt(pageNum);
 			// 현재 페이지
 
 			int total = rd.getTotal(memberNo); 

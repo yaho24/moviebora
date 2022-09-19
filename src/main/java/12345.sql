@@ -20,7 +20,7 @@ create table movie
 	movieActor1 VARCHAR2(20) NOT NULL,
 	movieActor2 VARCHAR2(20) NOT NULL,
 	movieDate DATE NOT NULL, -- 개봉일
-	movieGenre VARCHAR2(20) NOT NULL, -- 장르
+	movieGenre NUMBER NOT NULL, -- 장르
 	movieStory VARCHAR2(100) NOT NULL, -- 줄거리
 	movieDel CHAR(1) default 'n' NOT NULL
 );

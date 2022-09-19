@@ -72,28 +72,28 @@
 			<div class="items">
 				<div class="prev_btn">
 					<c:if test="${startPage > PAGE_PER_BLOCK}">
-						<button class="first" onclick="location.href='myRegistDisplayList.wo?pageNum=${startPage - 1}'">
+						<button class="first" onclick="location.href='myReview.yo?pageNum=${startPage - 1}'">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 						</button> 
 					</c:if>
 					<c:if test="${pageNum > 1}">
-						<button class="prev" onclick="location.href='myRegistDisplayList.wo?pageNum=${currentPage - 1}'">
+						<button class="prev" onclick="location.href='myReview.yo?pageNum=${currentPage - 1}'">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 						</button>
 					</c:if>
 				</div>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<span id="page${i}" class="page_num" onclick="location.href='myRegistDisplayList.wo?pageNum=${i}'">${i}</span>
+					<span id="page${i}" class="page_num" onclick="location.href='myReview.yo?pageNum=${i}'">${i}</span>
 				</c:forEach>
 				<div class="next_btn">
 					<c:if test="${currentPage < totalPage}">
-						<button class="next" onclick="location.href='myRegistDisplayList.wo?pageNum=${currentPage + 1}'">
+						<button class="next" onclick="location.href='myReview.yo?pageNum=${currentPage + 1}'">
 							<img alt="다음" src="../../images/icons/arrow_right.png">
 						</button>
 					</c:if>
 					<c:if test="${endPage < totalPage}">
-						<button class=last onclick="location.href='myRegistDisplayList.wo?pageNum=${endPage + 1}'">
+						<button class=last onclick="location.href='myReview.yo?pageNum=${endPage + 1}'">
 							<img alt="다음" src="../../images/icons/arrow_right.png">
 							<img alt="다음" src="../../images/icons/arrow_right.png">
 						</button> 
