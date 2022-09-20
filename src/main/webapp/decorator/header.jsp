@@ -70,7 +70,7 @@
 	<header>
 		<div class='header_inner'>
 			<div class='header_logo'>
-				<img alt="로고" src='mvSmall.jpg'>
+				<img alt="로고" src='mvLOGO.jpg'>
 			</div>
 			<nav>
 				<ul class='nav_sub'>

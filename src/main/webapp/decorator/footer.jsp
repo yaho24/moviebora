@@ -10,7 +10,7 @@
 <body>
 	<footer>
 		<div class="footer_inner">
-			<img class="footer_logo" alt="스몰로고" src="mvSmall.jpg" width="130px">
+			<img class="footer_logo" alt="스몰로고" src="mvLOGO.jpg" width="130px">
 		</div>
 	</footer>
 </body>
