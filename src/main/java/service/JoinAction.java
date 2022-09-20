@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDao;
 import model.Member;
+import service1.CommandProcess;
 
 public class JoinAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
@@ -14,8 +15,8 @@ public class JoinAction implements CommandProcess {
 		String email = request.getParameter("email");
 		String memberNickname = request.getParameter("memberNickname");
 		String password = request.getParameter("password");	
-		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
+		String profile = request.getParameter("profile");
 		
 		Member member = new Member();	//member 화면에서 입력한 데이터를 받기 위한 객체(도시락)
 		member.setMemberEmail(memberId);
@@ -24,6 +25,7 @@ public class JoinAction implements CommandProcess {
 		member.setMemberNickname(memberNickname);
 		member.setMemberPass(password);
 		member.setMemberGender(gender);
+		member.setMemberProfile(profile);
 		
 		MemberDao md = MemberDao.getInstance();
 		Member member1 = md.select(memberId);  // member2 DB에서 중복인지 확인하기 위한 객체

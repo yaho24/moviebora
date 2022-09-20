@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import service.CommandProcess;
 import dao.MemberDao;
 import model.Member;
+import service1.CommandProcess;
 
 public class LoginAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
