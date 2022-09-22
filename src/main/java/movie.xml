@@ -3,4 +3,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="moviens">
 	<!-- resultType은 조회할 때만 사용 -->
+	<select id="selectMovieName" parameterType="integer" resultType="string">
+		select m.movieName from movie m where movieNo = #{movieNo}
+	</select>
+	<select id="checkGenre" parameterType="integer" resultType="string">
+		select m.movieGenre from movie m where movieNo = #{movieNo}
+	</select>
+	<select id="RecommendList" parameterType="string" resultType="movie">
+		select * from movie where movieGenre = #{genre}
+	</select>
+	<select id="recommendPageList" parameterType="map" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select * from movie where movieGenreNo = #{genreNo}
+		and movieDel='n' and not (movieNo in 
+		(select movieNo from stars where memberNo = #{memberNo}))order by movieNo) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

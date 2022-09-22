@@ -4,11 +4,11 @@
 <configuration>
 	<properties resource="db.properties"/>
 	<typeAliases>
-		<typeAlias alias="member" type="12345.model.Member" />
-		<typeAlias alias="movie" type="12345.model.Movie" />
-		<typeAlias alias="review" type="12345.model.Review" />
-		<typeAlias alias="stars" type="12345.model.Stars" />
-		<typeAlias alias="likes" type="12345.model.Likes" />
+		<typeAlias alias="member" type="model.Member" />
+		<typeAlias alias="movie" type="model.Movie" />
+		<typeAlias alias="review" type="model.Review" />
+		<typeAlias alias="stars" type="model.Stars" />
+		<typeAlias alias="likes" type="model.Likes" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

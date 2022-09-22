@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -39,13 +40,39 @@ public class StarsDao
 		}
 	}
 
-	public int getTotal(String id) // 별점 먹인 수 
+	public int getTotal(String memberId) // 별점 먹인 수 
 	{
-		return (int)session.selectOne("starsns.getTotal", id);
+		return (int)session.selectOne("starsns.getTotal", memberId);
 	}
 
-	public List<Stars> StarsList(String id) // 별점 먹인 영화 리스트
+	public List<Stars> StarsList(String memberId) // 별점 먹인 영화 리스트
 	{
-		return session.selectList("starsns.starsList", id);
+		return session.selectList("starsns.starsList", memberId);
+	}
+
+	public List<Stars> starsPageList(int memberNo, int startRow, int endRow) 
+	{
+		HashMap<String, Integer> starsMap = new HashMap<>();
+		starsMap.put("memberNo", memberNo);
+		starsMap.put("startRow", startRow);
+	    starsMap.put("endRow", endRow);
+	    
+		return (List<Stars>) session.selectList("starsns.starsPageList", starsMap);
+	}
+
+	public int getScore(int movieNo) 
+	{
+		System.out.println(" getStore movieNo ="+movieNo);
+		return (int) session.selectOne("starsns.getScore", movieNo);
+	}
+
+	public int getCount(int movieNo) 
+	{
+		return (int) session.selectOne("starsns.getCount", movieNo);
+	}
+
+	public int average(int movieNo) 
+	{
+		return (int) session.selectOne("starsns.average", movieNo);
 	}
 }

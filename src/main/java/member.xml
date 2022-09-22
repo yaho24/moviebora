@@ -2,9 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
 	<select id ="select" parameterType="string" resultType="member">
-		select * from member where id = #{id}
+		select * from member where memberId = #{memberId}
 	</select>
 	<insert id ="insert" parameterType="member">
 		insert into member values(#{id}, #{password}, #{name}, #{address}, #{tel}, sysdate, 'n')
 	</insert>
+	<select id ="selectInt" parameterType="integer" resultType="member">
+		select * from member where memberNo = #{memberNo}
+	</select>
+	<select id ="selectMember" parameterType="string" resultType="member">
+		select * from member where memberId = #{memberId}
+	</select>
 </mapper>

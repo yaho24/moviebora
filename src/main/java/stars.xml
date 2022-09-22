@@ -3,13 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="starsns">
 	<select id="getTotal" parameterType="string" resultType="integer">
-		select count(*) from stars where id = #{id}
+		select count(*) from stars where memberNo = (select memberNo from member where memberId = #{memberId})
 	</select>
 	<select id="starsList" parameterType="string" resultType="stars">
-		select * from 
-		(select rowNum rn, e.* from 
-		(select s.*, movieName from stars s, movie m 
-		where s.movieNo = m.movieNo and s.id = #{id} and m.del='n' order by movieNo desc) e)
-		where rn between 1 and 4
+		select * from stars where memberNo = (select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by stars.memberNo
+	</select>
+	<select id="starsPageList" parameterType="hashmap" resultType="stars">
+		select * from (select rowNum rn, e.* from (
+		select s.*, movieName, movieDirector, movieActor1, movieActor2, movieGenre
+		from stars s, movie m where s.movieNo = m.movieNo and s.memberNo = #{memberNo}
+		and m.movieDel='n' order by m.movieNo desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getScore" parameterType="integer" resultType="integer">
+		select nvl(sum(score),0) from stars where movieNo = #{movieNo}
+	</select>
+	<select id="getCount" parameterType="integer" resultType="integer">
+		select count(*) from stars where movieNo = #{movieNo}
+	</select>
+	<select id="average" parameterType="integer" resultType="integer">
+		select nvl(round(avg(score), 1), 0) from stars where movieNo = #{movieNo}
 	</select>
 </mapper>

@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import service.CommandProcess;
 
 // urlPatterns="*.do", 끝이 .do인 url을 처리하겠다
-@WebServlet(urlPatterns="*.do",	initParams={@WebInitParam(name="config",value="/WEB-INF/command.properties")})
-public class Controller extends HttpServlet 
+@WebServlet(urlPatterns="*.yo",	initParams={@WebInitParam(name="config",value="/WEB-INF/commandYo.properties")})
+public class ControllerYo extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> commandMap = new HashMap<>();
@@ -103,11 +103,14 @@ public class Controller extends HttpServlet
 	    	// request.getContextPath().length()+1 : 6
 		    command = command.substring(request.getContextPath().length()+1); 
 		    // command : message.do
+		    System.out.println(command);
 	        com = (CommandProcess)commandMap.get(command); 
+	        System.out.println(com);
 	        // com : service.Message객체를 CommandProcess로 형변환
 	        // 자식 즉 Message객체의 requestPro()메소드 실행
 	        view = com.requestPro(request, response);
 	        // view는 "message.jsp" 문자
+	        System.out.println(view);
 	    } 
 	    catch(Throwable e) 
 	    { 

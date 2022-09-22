@@ -1,0 +1,213 @@
+@charset "UTF-8";
+.point-color 
+{
+	color: var(--point-color);
+	font-weight: 600;
+}
+
+/* menu 시작 */
+.menu 
+{
+	width: 100%;
+	display: table;
+}
+
+.menu>ul 
+{
+	display: table-row;
+}
+
+.menu>ul>li 
+{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* 프로필 */
+.menu>ul>li:first-child 
+{
+	width: 130px;
+}
+
+.menu>ul>li:first-child img 
+{
+	height: 106px;
+	border-radius: 50%;
+}
+
+/* 연필 이미지 */
+.profile_txt>a>img 
+{
+	width: 22px;
+	vertical-align: bottom;
+}
+
+.profile_txt>a>span 
+{
+	display: inline-block;
+	text-align: center;
+	font-size: 13px;
+	color: #666;
+	padding: 0 3px;
+	margin-top: 7px;
+	margin-left: -8px;
+	text-decoration: underline;
+	text-underline-position: under;
+	text-decoration-color: #AAA;
+	-webkit-text-decoration-color: #AAA;
+}
+
+/* nav */
+.category>ul>li 
+{
+	float: left;
+	width: 25%;
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+}
+
+.dot 
+{
+	display: none;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: var(--point-color);
+	position: absolute;
+	top: 7%;
+	right: 25%;
+}
+
+/* 아이콘 */
+.category>ul>li>img 
+{
+	display: block;
+	width: 50px;
+	margin: 0 auto;
+}
+
+/* menu 끝 ************************************************************** */
+
+/* 각 페이지 content(공통) */
+.content 
+{
+	margin-top: 50px;
+	border-top: 1px solid #e4e4e4;
+	padding-top: 40px;
+}
+
+.content ul 
+{
+	width: 100%;
+	margin-top: 30px;
+}
+
+.content ul li 
+{
+	float: left;
+	width: 50%;
+	margin-bottom: 50px;
+}
+
+/* 내용 없을 때 ul */
+.noItems 
+{
+	margin: 0px !important;
+}
+
+.noItems li 
+{
+	width: 100% !important;
+	text-align: center;
+}
+
+.content>ul>li>a 
+{
+	display: inline-block;
+	width: 33%;
+}
+
+/* 썸네일or포스터 */
+.content>ul>li>a>img 
+{
+	width: 100%;
+	height: 11vw;
+	object-fit: cover;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+/* 텍스트 영역 */
+.txt_area 
+{
+	position: relative;
+	display: inline-block;
+	width: 60%;
+	height: 11vw;
+	vertical-align: middle;
+	margin-left: 2%;
+}
+
+.cursor 
+{
+	cursor: pointer;	
+}
+
+/* 타이틀 */
+.txt_title 
+{
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 3% 0;
+}
+
+.txt_pre 
+{
+    display: -webkit-box;
+    width: 100%;
+    height: inherit;
+    word-break: keep-all;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* 버튼영역 */
+.txt_bottom 
+{
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn_area 
+{
+	position: absolute;
+    right: 3px;
+    bottom: 0;
+}
+
+.btn_small 
+{
+	display: inline-block;
+	width: initial;
+	height: initial;
+	font-size: 14px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	color: #aaa;
+	font-weight: 500;
+	text-decoration: underline;
+}
+/* 내용(각 페이지 공통) 끝 ****************************** */

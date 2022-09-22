@@ -7,8 +7,8 @@ public class Movie
 	private String movieDirector;
 	private String movieActor1;
 	private String movieActor2;
-	private int movieScore;
 	private String movieGenre;
+	private int movieGenreNo;
 	private String movieStory;
 	
 	public int getMovieNo() 
@@ -51,14 +51,6 @@ public class Movie
 	{
 		this.movieActor2 = movieActor2;
 	}
-	public int getMovieScore() 
-	{
-		return movieScore;
-	}
-	public void setMovieScore(int movieScore) 
-	{
-		this.movieScore = movieScore;
-	}
 	public String getMovieGenre() 
 	{
 		return movieGenre;
@@ -66,6 +58,14 @@ public class Movie
 	public void setMovieGenre(String movieGenre) 
 	{
 		this.movieGenre = movieGenre;
+	}
+	public int getMovieGenreNo() 
+	{
+		return movieGenreNo;
+	}
+	public void setMovieGenreNo(int movieGenreNo) 
+	{
+		this.movieGenreNo = movieGenreNo;
 	}
 	public String getMovieStory() 
 	{

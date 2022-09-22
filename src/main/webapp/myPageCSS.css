@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* 메인페이지 content */
+*
+{
+	background : #FFE6F7;
+}
+
+.content ul 
+{
+	width: 100%;
+	margin: 0 !important;
+}
+
+.content ul li 
+{
+	width: 48% !important;
+	min-height: 11vw;
+	margin-bottom: 3vw !important;
+	height: 100px !important;
+}
+
+.content ul li:nth-child(2), .content ul li:nth-child(4) 
+{
+	margin-left: 4%;
+}
+
+.content ul li>h3 
+{
+	display: inline-block;
+}
+
+.content ul li>a 
+{
+    display: inline-block;
+    width: auto !important;
+    font-size: 13px;
+    color: var(--point-color);
+    float: right;
+    margin-top: 9px;
+}
+
+.content ul li>p 
+{
+	margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+table 
+{
+	width: 100%;
+	border-collapse: collapse;
+    margin-top: 5px;
+    table-layout: fixed;
+}
+
+table th 
+{
+	font-size: 14px;
+	font-weight: 600;
+	border-bottom: 1px solid #999;
+	padding: 3px 5px;
+}
+
+th:nth-child(1), td:nth-child(1) 
+{
+	width: 70%;
+    border-right: 1px solid #e4e4e4;
+}
+
+table td 
+{
+	font-size: 14px;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 3px 5px;
+}
+
+table td a 
+{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
