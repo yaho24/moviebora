@@ -6,7 +6,10 @@
 		select count(*) from review where memberNo = (select memberNo from member where memberId = #{memberId})
 	</select>
 	<select id="reviewList" parameterType="string" resultType="review">
-		select * from review where memberNo = (select memberNo from member where memberId = #{memberId} and memberDel = 'n') order by reviewNo
+		select * from (select rowNum rn, e.* from
+		(select * from review where memberNo = 
+		(select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by reviewNo desc) e)
+		where rn between 1 and 4
 	</select>
 	<select id="reviewPageList" parameterType="hashmap" resultType="review">
 		select * from (select rowNum rn, e.* from (

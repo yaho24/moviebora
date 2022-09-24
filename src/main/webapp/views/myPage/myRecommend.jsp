@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../myPageCSS.css">
+	<!-- CSS -->
 	
 	<script type="text/javascript">
 		$(document).ready(function() 
@@ -35,21 +35,21 @@
 				</ul>
 			</c:if>
 			<c:if test="${recommendPageList.size() != 0}">
-				<h3> 추천 목록 ${total}</h3>
+				<h3> 추천 목록 ${total} </h3>
 				<ul>
 					<c:forEach var="recommendP" items="${recommendPageList}">
 						<li>
 							<a href="../display/dpView.do?dno=${recommendP.movieNo}">
+							<!-- movieNo에 해당하는 영화 상세페이지로 링크 -->
 								<img alt="포스터" src="/semojeon/upload/${recommendP.movieNo}"> 
+								<!-- 이미지는 movieNo에 따른 영화포스터로 연결 -->
 							</a>
 							<div class="txt_area">
 								<a href="../display/dpView.do?dno=${recommendP.movieNo}" class="cursor">
 									<span class="txt_title">${recommendP.movieName}</span>
 									<span class="txt"><span>장르</span> ${recommendP.movieGenre}</span>
 									<span class="txt"><span>감독</span> ${recommendP.movieDirector}</span>
-									<span class="txt"><span>배우1</span>${recommendP.movieActor1}</span>
-									<span class="txt"><span>배우2</span> ${recommendP.movieActor2}</span>
-									<span class="txt"><span>평균별점</span> ${Average_Score}</span>
+									<span class="txt"><span>평균별점</span> ${recommendP.score} 점 </span>
 								</a>
 								<!-- pre 태그 안에 있는 css 요소 삭제 -->
 								<script type="text/javascript">

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href = "/moviebora/views/myPage/myPage.yo";
+		location.href = "/moviebora/views/mainPage/mainPage.yo";
 	</script>
 </body>
 </html>

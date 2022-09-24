@@ -10,7 +10,9 @@ public class Movie
 	private String movieGenre;
 	private int movieGenreNo;
 	private String movieStory;
-	
+	private String movieDel;
+	private int score;
+
 	public int getMovieNo() 
 	{
 		return movieNo;
@@ -74,5 +76,21 @@ public class Movie
 	public void setMovieStory(String movieStory) 
 	{
 		this.movieStory = movieStory;
+	}
+	public String getMovieDel() 
+	{
+		return movieDel;
+	}
+	public void setMovieDel(String movieDel) 
+	{
+		this.movieDel = movieDel;
+	}
+	public int getScore() 
+	{
+		return score;
+	}
+	public void setScore(int score) 
+	{
+		this.score = score;
 	}
 }

@@ -38,9 +38,6 @@ public class MyStars implements CommandProcess
 			ReviewDao reviewD = ReviewDao.getInstance();
 			int reviewTotal = reviewD.getTotal(memberId);
 			// 공통
-			
-			System.out.println("starsDgetTotal : "+starsTotal);
-			System.out.println("reviewDgetTotal : "+reviewTotal);
 
 			final int ROW_PER_PAGE = 4; // 한 페이지에 게시글 6개 씩
 			final int PAGE_PER_BLOCK = 4; // 한 블럭에 5페이지 씩

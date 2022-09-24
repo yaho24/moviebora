@@ -90,7 +90,7 @@
 					</c:if>
 				</ul>
 				<ul class='nav_main'>
-					<li><a href="/moviebora/views/myPage/myRecommend.yo" id="display">영화목록</a></li>
+					<li><a href="/moviebora/views/myPage/myRecommend.yo" id="display">메인페이지</a></li>
 					<li><a id="myPage" onclick="return ssChk('main')">마이페이지</a></li>
 					<li><a id="search"><img alt="검색" src="/semojeon/images/icons/search.png"></a></li>
 				</ul>

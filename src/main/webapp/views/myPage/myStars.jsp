@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../myPageCSS.css">
+	<!-- CSS -->
 	<script type="text/javascript">
 		$(document).ready(function() 
 		{
@@ -43,11 +43,10 @@
 							</a>
 							<div class="txt_area">
 								<a href="../display/dpView.do?dno=${starsP.movieNo}" class="cursor">
+								<!-- 영화번호에 맞는 영화 상세페이지이동? -->
 									<span class="txt_title"><span>영화제목</span>${starsP.movieName}</span>
 									<span class="txt"><span>장르</span>${starsP.movieGenre}</span>
 									<span class="txt"><span>감독</span>${starsP.movieDirector}</span>
-									<span class="txt"><span>배우1</span>${starsP.movieActor1}</span>
-									<span class="txt"><span>배우2</span>${starsP.movieActor2}</span>
 									<span class="txt"><span>점수</span>${starsP.score}</span>
 								</a>
 								<!-- pre 태그 안에 있는 css 요소 삭제 -->

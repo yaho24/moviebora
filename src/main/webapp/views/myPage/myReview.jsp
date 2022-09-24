@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../myPageCSS.css">
+	<!-- CSS -->
 	<script type="text/javascript">
 		$(document).ready(function() 
 		{
@@ -34,15 +34,18 @@
 				</ul>
 			</c:if>
 			<c:if test="${reivewPageList.size() != 0}">
-				<h3> 리뷰 목록 ${total}</h3>
+				<h3> 리뷰 목록 ${total} </h3>
 				<ul>
 					<c:forEach var="reviewP" items="${reviewPageList}">
 						<li>
 							<a href="../display/dpView.do?dno=${reviewP.movieNo}">
+							<!-- 영화번호에 맞는 영화상세페이지로 이동 -->
 								<img alt="포스터" src="/semojeon/upload/${reviewP.movieNo}"> 
+								<!-- 영화번호에 맞는 이미지 출력 -->
 							</a>
 							<div class="txt_area">
 								<a href="../display/dpView.do?dno=${reviewP.movieNo}" class="cursor">
+								<!-- 영화번호에 따라 해당 리뷰보여주는곳으로 이동? -->
 									<span class="txt_title">${reviewP.reviewSubject}</span>
 									<span class="txt"><span>리뷰영화</span> ${reviewP.movieName}</span>
 									<span class="txt"><span>리뷰내용</span> ${reviewP.reviewContent}</span>

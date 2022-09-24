@@ -31,8 +31,6 @@ public class MyRecommend implements CommandProcess
 			int memberNo = (int) session.getAttribute("memberNo");
 			String memberId = (String) session.getAttribute("memberId");
 			
-			System.out.println("추천1번지점 통과");
-			
 			//
 			MemberDao memberD = MemberDao.getInstance();
 			Member member = memberD.select(memberNo);
@@ -50,8 +48,6 @@ public class MyRecommend implements CommandProcess
 			String movieName = "";
 			List<String> movieNameList = new ArrayList<>();
 			
-			System.out.println("추천2번지점 통과");
-			
 			for(int i=0 ; i<StarsList.size() ; i++)
 			{
 				movieName = movieD.selectMovieName(StarsList.get(i).getMovieNo());
@@ -63,7 +59,6 @@ public class MyRecommend implements CommandProcess
 			int genreNo = 0;
 			int[] genreCount = new int[4]; 
 			String genre = "";
-			int Average_Score = 0;
 			
 			for(int i=0 ; i<StarsList.size() ; i++)
 			{
@@ -108,7 +103,7 @@ public class MyRecommend implements CommandProcess
 						  break;
 			}
 			
-			System.out.println("추천3번지점 통과");
+			List<Movie> recommendPageListTotal = movieD.recommendPageListTotal(memberNo, genreNo);
 
 			final int ROW_PER_PAGE = 4; // 한 페이지에 게시글 6개 씩
 			final int PAGE_PER_BLOCK = 4; // 한 블럭에 5페이지 씩
@@ -122,12 +117,12 @@ public class MyRecommend implements CommandProcess
 			
 			int currentPage = Integer.parseInt(pageNum); // 현재 페이지
 
-			int total = starsTotal; // 총 게시글 수
-			int totalPage = (int) Math.ceil((double) total / ROW_PER_PAGE); // 총 페이지 수
-
 			int startRow = (currentPage - 1) * ROW_PER_PAGE + 1; // 게시글의 시작 번호(변수 num의 제일 마지막)
 			int endRow = startRow + ROW_PER_PAGE - 1; // 게시글의 마지막 번호(변수 num = 1)
-
+			
+			int total = recommendPageListTotal.size(); // 총 추천 영화 수
+			int totalPage = (int) Math.ceil((double) total / ROW_PER_PAGE); // 총 페이지 수
+			
 			int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK; // 한 블럭 당 시작 페이지(1, 11, 21, ...)
 			int endPage = startPage + PAGE_PER_BLOCK - 1; // 한 블럭 당 마지막 페이지
 
@@ -136,48 +131,10 @@ public class MyRecommend implements CommandProcess
 				endPage = totalPage; // 마지막 페이지가 총 페이지 수 보다 클 경우
 			}
 			
-			System.out.println("추천4번지점 통과");
-
 			List<Movie> recommendPageList = movieD.recommendPageList(memberNo, genreNo, startRow, endRow);
-			
-			int[] AverageScore = new int[recommendPageList.size()];
-			
-			System.out.println("추천5번지점 통과");
-			
-			System.out.println("RecommendPageList사이즈 : "+recommendPageList.size());
-			
-			if(recommendPageList.size() != 0)
-			{
-				for(int x=0; x<recommendPageList.size() ; x++)
-				{
-					System.out.println("첫번째 영화번호 : "+recommendPageList.get(x).getMovieNo());
-					int tempScore = starsD.getScore(recommendPageList.get(x).getMovieNo());
-					int tempCount = starsD.getCount(recommendPageList.get(x).getMovieNo());
-					
-					Average_Score = starsD.average(recommendPageList.get(x).getMovieNo());
-					
-					if(tempCount == 0)
-					{
-						AverageScore[x] = 0;
-					}
-					else
-					{
-						AverageScore[x] = (int)(Math.round(tempScore/tempCount));
-					}
-					
-					
-				}
-				
-				System.out.println("AverageScore : "+AverageScore[0]);
-				System.out.println("Average_Score : "+Average_Score);
-			}
-		
-			System.out.println("추천6번지점 통과");
 
 			request.setAttribute("member", member);
 			request.setAttribute("recommendPageList", recommendPageList);
-			request.setAttribute("averageScore", AverageScore);
-			request.setAttribute("Average_Score", Average_Score);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("totalPage", totalPage);

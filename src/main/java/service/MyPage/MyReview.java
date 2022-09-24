@@ -38,9 +38,6 @@ public class MyReview implements CommandProcess
 			ReviewDao reviewD = ReviewDao.getInstance();
 			int reviewTotal = reviewD.getTotal(memberId);
 			// 공통
-			
-			System.out.println("스타토탈 : "+starsTotal);
-			System.out.println("리뷰토탈 : "+reviewTotal);
 
 			final int ROW_PER_PAGE = 4; // 한 페이지에 게시글 6개 씩
 			final int PAGE_PER_BLOCK = 4; // 한 블럭에 5페이지 씩
@@ -69,10 +66,6 @@ public class MyReview implements CommandProcess
 			}
 
 			List<Review> reviewPageList = reviewD.reviewPageList(memberNo, startRow, endRow);
-			
-			System.out.println("리뷰페이지리스트사이즈"+reviewPageList.size());
-			System.out.println("리뷰페이지리스트1"+reviewPageList.get(0).getReviewSubject());
-			System.out.println("리뷰페이지리스트2"+reviewPageList.get(1).getReviewSubject());
 
 			request.setAttribute("member", member);
 			request.setAttribute("reviewPageList", reviewPageList); 

@@ -7,8 +7,6 @@ public class Stars
 	private int movieNo;
 	private String movieName;
 	private String movieDirector;
-	private String movieActor1;
-	private String movieActor2;
 	private String movieGenre;
 	
 	public String getMovieName() 
@@ -26,22 +24,6 @@ public class Stars
 	public void setMovieDirector(String movieDirector) 
 	{
 		this.movieDirector = movieDirector;
-	}
-	public String getMovieActor1() 
-	{
-		return movieActor1;
-	}
-	public void setMovieActor1(String movieActor1) 
-	{
-		this.movieActor1 = movieActor1;
-	}
-	public String getMovieActor2() 
-	{
-		return movieActor2;
-	}
-	public void setMovieActor2(String movieActor2) 
-	{
-		this.movieActor2 = movieActor2;
 	}
 	public String getMovieGenre() 
 	{

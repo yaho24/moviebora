@@ -6,11 +6,14 @@
 		select count(*) from stars where memberNo = (select memberNo from member where memberId = #{memberId})
 	</select>
 	<select id="starsList" parameterType="string" resultType="stars">
-		select * from stars where memberNo = (select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by stars.memberNo
+		select * from (select rowNum rn, e.* from
+		(select * from stars where memberNo = 
+		(select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by memberNo) e)
+		where rn between 1 and 4
 	</select>
 	<select id="starsPageList" parameterType="hashmap" resultType="stars">
 		select * from (select rowNum rn, e.* from (
-		select s.*, movieName, movieDirector, movieActor1, movieActor2, movieGenre
+		select s.*, movieName, movieDirector, movieGenre
 		from stars s, movie m where s.movieNo = m.movieNo and s.memberNo = #{memberNo}
 		and m.movieDel='n' order by m.movieNo desc) e)
 		where rn between #{startRow} and #{endRow}

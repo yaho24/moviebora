@@ -103,14 +103,11 @@ public class ControllerYo extends HttpServlet
 	    	// request.getContextPath().length()+1 : 6
 		    command = command.substring(request.getContextPath().length()+1); 
 		    // command : message.do
-		    System.out.println(command);
 	        com = (CommandProcess)commandMap.get(command); 
-	        System.out.println(com);
 	        // com : service.Message객체를 CommandProcess로 형변환
 	        // 자식 즉 Message객체의 requestPro()메소드 실행
 	        view = com.requestPro(request, response);
 	        // view는 "message.jsp" 문자
-	        System.out.println(view);
 	    } 
 	    catch(Throwable e) 
 	    { 

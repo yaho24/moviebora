@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="../../myPageCSS.css">
 </head>
 <body>
 	<div class="container_middle">
@@ -45,7 +44,6 @@
 					</c:if>
 					<c:if test="${not empty reviewList}">
 						<a href="myReview.yo">+ 자세히</a>
-						<!-- myPage에 영화리뷰남긴 리스트 -->
 						<table>
 							<tr>
 								<th>리뷰제목</th>
@@ -70,7 +68,7 @@
 						<table>
 							<tr>
 								<th>영화장르</th>
-								<th>영화포스터 및 제목</th>
+								<th>영화제목</th>
 							</tr>
 							<c:forEach items="${recommendList}" var="recommend">
 								<tr>

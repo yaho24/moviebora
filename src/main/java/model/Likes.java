@@ -2,9 +2,18 @@ package model;
 
 public class Likes 
 {
+	private int likes;
 	private int memberNo;
 	private int reviewNo;
 	
+	public int getLikes() 
+	{
+		return likes;
+	}
+	public void setLikes(int likes) 
+	{
+		this.likes = likes;
+	}
 	public int getMemberNo() 
 	{
 		return memberNo;

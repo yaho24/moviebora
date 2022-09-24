@@ -10,13 +10,68 @@
 		select m.movieGenre from movie m where movieNo = #{movieNo}
 	</select>
 	<select id="RecommendList" parameterType="string" resultType="movie">
-		select * from movie where movieGenre = #{genre}
+		select * from (select rowNum rn, e.* from 
+		(select * from movie where movieGenre = #{genre}
+		and movieDel='n' order by movieNo desc) e)
+		where rn between 1 and 4
 	</select>
 	<select id="recommendPageList" parameterType="map" resultType="movie">
 		select * from (select rowNum rn, e.* from 
-		(select * from movie where movieGenreNo = #{genreNo}
-		and movieDel='n' and not (movieNo in 
-		(select movieNo from stars where memberNo = #{memberNo}))order by movieNo) e)
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score 
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieGenreNo = #{genreNo} and m.movieDel='n' 
+		and not (s.movieNo in (select s.movieNo from stars where s.memberNo = #{memberNo})) 
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, m.movieNo) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="recommendPageListTotal" parameterType="map" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score 
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieGenreNo = #{genreNo} and m.movieDel='n' 
+		and not (s.movieNo in (select s.movieNo from stars where s.memberNo = #{memberNo})) 
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, m.movieNo) e)
+	</select>
+	<select id="TotalMovieList" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieDel='n'
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, movieNo) e)
+	</select>
+	<select id="TotalMoviePageList" parameterType="map" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieDel='n'
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, movieNo) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="GenreMovieList" parameterType="integer" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieDel='n' and m.movieGenreNo = #{index}
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, movieNo) e)
+	</select>
+	<select id="GenreTotalMoviePageList" parameterType="map" resultType="movie">
+		select * from (select rowNum rn, e.* from 
+		(select m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2, 
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel, round(avg(nvl(score, 0)), 1) as score
+		from stars s, movie m 
+		where s.movieNo(+) = m.movieNo and m.movieDel='n' and m.movieGenreNo = #{movieGenreNo}
+		group by m.movieNo, m.movieName, m.movieDirector, m.movieActor1, m.movieActor2,
+		m.movieGenre, m.movieGenreNo, m.movieStory, m.movieDel order by score desc, movieNo) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

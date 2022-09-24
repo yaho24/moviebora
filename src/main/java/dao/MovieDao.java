@@ -57,15 +57,50 @@ public class MovieDao
 
 	public List<Movie> recommendPageList(int memberNo, int genreNo, int startRow, int endRow) 
 	{
-		System.out.println("여긴 왔나요?");
 		HashMap<String, Integer> recommendMap = new HashMap<>();
 		recommendMap.put("memberNo", memberNo);
 		recommendMap.put("genreNo", genreNo);
 		recommendMap.put("startRow", startRow);
 		recommendMap.put("endRow", endRow);
-	    System.out.println("다 넣었나요?");
-	    System.out.println("memberNo, genreNo, startRow, endRow 뭔가요? : "+memberNo+" "+genreNo+" "+startRow+" "+endRow);
 		
 		return (List<Movie>) session.selectList("moviens.recommendPageList", recommendMap);
+	}
+
+	public List<Movie> recommendPageListTotal(int memberNo, int genreNo) 
+	{
+		HashMap<String, Integer> recommendTotalMap = new HashMap<>();
+		recommendTotalMap.put("memberNo", memberNo);
+		recommendTotalMap.put("genreNo", genreNo);
+		
+		return (List<Movie>) session.selectList("moviens.recommendPageListTotal", recommendTotalMap);
+	}
+
+	public List<Movie> TotalMovieList() 
+	{
+		return (List<Movie>) session.selectList("moviens.TotalMovieList");
+	}
+
+	public List<Movie> TotalMoviePageList(int startRow, int endRow) 
+	{
+		HashMap<String, Integer> TMPLmap = new HashMap<>();
+		TMPLmap.put("startRow", startRow);
+		TMPLmap.put("endRow", endRow);
+		
+		return (List<Movie>) session.selectList("moviens.TotalMoviePageList", TMPLmap);
+	}
+	
+	public List<Movie> GenreMovieList(int index) 
+	{
+		return (List<Movie>) session.selectList("moviens.GenreMovieList", index);
+	}
+
+	public List<Movie> GenreTotalMoviePageList(int movieGenreNo, int startRow, int endRow) 
+	{
+		HashMap<String, Integer> GTMPLmap = new HashMap<>();
+		GTMPLmap.put("movieGenreNo", movieGenreNo);
+		GTMPLmap.put("startRow", startRow);
+		GTMPLmap.put("endRow", endRow);
+		
+		return (List<Movie>) session.selectList("moviens.GenreTotalMoviePageList", GTMPLmap);
 	}
 }

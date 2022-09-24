@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 세션체크 자리 -->
-<link rel="stylesheet" type="text/css" href="../../myPageMainCSS.css">
+<!-- css자리 -->
 <script type="text/javascript">
 	function showCon(id) 
 	{
@@ -14,12 +14,15 @@
 	<ul>
 		<!-- 프로필 영역 -->
 		<li>
-			<img alt="프로필사진" src="0.png"><!-- 멤버번호로 링크걸것 -->
+			<img alt="프로필사진" src="0.png">
+			<!-- 멤버번호로 이미지 파일링크걸것 -->
 		</li>
 		<li class="profile_txt">
 			<h2>${member.memberNickname}</h2>
 			<a href="../member/updateForm.na?memberNo=${member.memberNo}">
+			<!-- 멤버번호로 업데이트에 링크 -->
 				<img alt="연필" src="../../images/icons/write-gray.png">
+				<!-- 수정 아이콘에 이미지 소스 -->
 				<span>내 정보 수정</span>
 			</a>
 		</li>
